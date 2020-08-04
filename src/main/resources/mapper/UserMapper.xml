@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tk.hellojarvis.db.dao.UserMapper">
+    <resultMap id="userMap" type="user">
+        <id column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="user_pwd" property="userPwd"/>
+    </resultMap>
+    <select id="loadUser" resultMap="userMap" parameterType="user">
+        select * from users where user_name=#{userName} and user_pwd=md5(#{userPwd})
+    </select>
+    <update id="deleteAllUser">
+        delete from users;
+    </update>
+</mapper>
